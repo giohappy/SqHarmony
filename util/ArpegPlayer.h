@@ -71,8 +71,8 @@ private:
     // AudioMath::RandomUniformFunc random = {AudioMath::random()};
     std::mt19937 randomGenerator{1234567891};
 
-    std::pair<float, float> playbackBuffer[4 + 2 * (1 + NoteBuffer::maxCapacity)];
-    std::pair<float, float> sortBuffer[NoteBuffer::maxCapacity];
+    std::pair<float, float> playbackBuffer[4 + 2 * (1 + NOTE_BUFFER_MAX_CAPACITY)];
+    std::pair<float, float> sortBuffer[NOTE_BUFFER_MAX_CAPACITY];
     int playbackIndex = -1;
     int playbackSize = 0;
     bool reFillOnIndexArmed = false;

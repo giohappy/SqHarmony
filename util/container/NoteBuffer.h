@@ -6,6 +6,8 @@
 
 #include "SqLog.h"
 
+#define NOTE_BUFFER_MAX_CAPACITY 32
+
 class NoteBuffer {
 public:
     NoteBuffer(int cap);
@@ -14,9 +16,8 @@ public:
     void onChange(callback);
 
     int getCapacity() const {
-        return curCapacity;
+        return NOTE_BUFFER_MAX_CAPACITY;
     }
-    static const int maxCapacity{32};
     int size() const { return siz; }
     bool empty() const { return siz == 0; }
 
@@ -49,7 +50,7 @@ private:
             cb(this);
         }
     }
-    Data data[maxCapacity + 2];
+    Data data[NOTE_BUFFER_MAX_CAPACITY + 2];
     void removeAll();
 };
 
@@ -71,9 +72,9 @@ inline void NoteBuffer::setHold(bool h) {
 
 inline void NoteBuffer::setCapacity(int size) {
     if (size == 0) {
-        size = maxCapacity;
+        size = NOTE_BUFFER_MAX_CAPACITY;
     }
-    size = std::min(size, maxCapacity);
+    size = std::min(size, NOTE_BUFFER_MAX_CAPACITY);
     if (size != curCapacity) {
         curCapacity = size;
 
